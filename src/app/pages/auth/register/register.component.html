@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="row justify-content-center">
+      <div class="col-xl-12 col-lg-12 col-md-9">
+        <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+              <div class="col-lg-6 d-none d-lg-block 
+              bg-register-image"></div>
+              <div class="col-md-6 mx-auto mt-5">
+                <div class="card">
+                  <div class="card-body">
+                    <h3 class="text-center">REGISTRARSE</h3>
+                    <div *ngIf="band" class="row alert alert-success font-weight-bold">
+                      <div class="text-center">
+                        {{ message }}
+                      </div>
+                    </div>
+                    <form [formGroup]="signUpForm" (ngSubmit)="onRegister()">
+                      <div class="form-group">
+                        <label for="type_identification">Tipo Identificación</label>
+                        <select class="form-control" formControlName="type">
+                          <option value="">Seleccione uno</option>
+                          <option *ngFor="let item of type_identification" [value]="item.id">
+                            {{ item.name+" - "+item.initial }}
+                          </option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="numero">Numero de identificación</label>
+                        <input id="numero" class="form-control" type="number" formControlName="numero">
+                        <div *ngIf="signUpForm.get('numero').errors && signUpForm.get('numero').touched"
+                          class="alert alert-danger">
+                          {{ getErrorMessage(signUpForm.get('numero').errors) }}
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input id="nombre" class="form-control" type="text" formControlName="nombre">
+                        <div *ngIf="signUpForm.get('nombre').errors && signUpForm.get('nombre').touched"
+                          class="alert alert-danger">
+                          {{ getErrorMessage(signUpForm.get('nombre').errors) }}
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="apellido">Apelllidos</label>
+                        <input id="apellido" class="form-control" type="text" formControlName="apellido">
+                        <div *ngIf="signUpForm.get('apellido').errors && signUpForm.get('apellido').touched"
+                          class="alert alert-danger">
+                          {{ getErrorMessage(signUpForm.get('apellido').errors) }}
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" formControlName="email" />
+                        <div *ngIf="signUpForm.get('email').errors && signUpForm.get('email').touched"
+                          class="alert alert-danger">
+                          {{ getErrorMessage(signUpForm.get('email').errors) }}
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="role">Tipo de Usuario</label>
+                        <select name="rol" class="form-control" formControlName="role">
+                          <option *ngFor="let item of roles" [value]="item.id">
+                            {{ item.name }}
+                          </option>
+                        </select>
+                      </div>
+                      <button type="submit" (click)="enviarRegistro()" class="btn btn-primary btn-user btn-block">
+                        Enviar Solicitud
+                      </button>
+                    </form>
+                    <div class="form-group mt-3">
+                      <p>
+                        ¿Tiene usted una cuenta?<a [routerLink]="['/login']">
+                          Iniciar sesión </a></p>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

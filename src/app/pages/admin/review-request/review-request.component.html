@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr class="bg-primary text-center text-white">
+            <th>Fecha Solicitud</th>
+            <th>Tipo identificación</th>
+            <th>Identificación</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Email</th>
+            <th>Rol</th>
+            <th>Estado</th>
+            <th>Aceptar</th>
+            <th>Rechazar</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of requestUsers">
+              <td>{{ item.datetime }}</td>
+              <td>{{ item.tipo_doc }}</td>
+              <td>{{ item.numero }}</td>
+              <td>{{ item.nombre }}</td>
+              <td>{{ item.apellido }}</td>
+              <td>{{ item.email}}</td>
+              <td>{{ item.roleName }}</td>
+              <td>{{ item.estadoName }}</td>
+              <td class="text-center">
+                <button class="btn btn-success">
+                  <i class="fas fa-check-double"></i>
+                </button>
+              </td>
+              <td class="text-center">
+                <button class="btn btn-danger">
+                  <i class="far fa-times-circle"></i>
+                </button>
+              </td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
